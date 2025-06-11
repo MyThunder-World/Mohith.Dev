@@ -680,7 +680,7 @@
                 <p class="description ">
                 Passionate about game development, I specialize in creating engaging Roblox experiences that bring players together in virtual worlds filled with adventure and excitement.
                 </p>
-                <a href="#projects" class="cta-button animate-text delay-3">View My Games</a>
+                <a href="#projects" class="cta-button animate-text delay-3">View My Projects</a>
             </div>
             
         <div class="profile-section">
@@ -782,7 +782,7 @@
     <!-- Projects Section -->
     <section id="projects">
         <div class="section-content">
-            <h2 class="section-title">My Projects</h2>
+            <h2 class="section-title animate-text">My Projects</h2>
             <div class="projects-grid">
                 <div class="project-card">
                     <h3 class="project-title">Thunder Game V4</h3>
@@ -1014,6 +1014,90 @@ class LineSplitter {
 
 // Initialize the text animator
 new TextAnimator();
+// Enhanced TextAnimator with reverse scroll animation
+class ReverseScrollAnimator {
+    constructor() {
+        this.animatedElements = new Map();
+        this.init();
+    }
+    
+    init() {
+        // Wait for existing TextAnimator to finish
+        setTimeout(() => {
+            this.setupReverseAnimations();
+        }, 100);
+    }
+    
+    setupReverseAnimations() {
+        // Find all animated line containers
+        const lineContainers = document.querySelectorAll('.line-container');
+        
+        lineContainers.forEach(container => {
+            const lines = container.querySelectorAll('.animated-line');
+            if (lines.length === 0) return;
+            
+            // Store original state
+            this.animatedElements.set(container, {
+                lines: Array.from(lines),
+                isAnimated: false
+            });
+            
+            // Create ScrollTrigger for reverse animation
+            ScrollTrigger.create({
+                trigger: container,
+                start: "top 85%",
+                end: "bottom 15%",
+                onEnter: () => {
+                    this.animateIn(container);
+                },
+                onLeave: () => {
+                    this.animateOut(container);
+                },
+                onEnterBack: () => {
+                    this.animateIn(container);
+                },
+                onLeaveBack: () => {
+                    this.animateOut(container);
+                }
+            });
+        });
+    }
+    
+    animateIn(container) {
+        const data = this.animatedElements.get(container);
+        if (!data || data.isAnimated) return;
+        
+        data.isAnimated = true;
+        
+        gsap.to(data.lines, {
+            duration: 0.8,
+            stagger: 0.2,
+            y: 0,
+            opacity: 1,
+            ease: "power2.out"
+        });
+    }
+    
+    animateOut(container) {
+        const data = this.animatedElements.get(container);
+        if (!data || !data.isAnimated) return;
+        
+        data.isAnimated = false;
+        
+        gsap.to(data.lines, {
+            duration: 0.6,
+            stagger: 0.1,
+            y: 50,
+            opacity: 0,
+            ease: "power2.in"
+        });
+    }
+}
+
+// Initialize reverse scroll animator
+setTimeout(() => {
+    new ReverseScrollAnimator();
+}, 500);
 </script>
 </body>
 </html>
