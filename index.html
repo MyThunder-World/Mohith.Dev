@@ -889,6 +889,124 @@
             });
         });
     </script>   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<style>
+.line-container { overflow: hidden; }
+.animated-line { 
+    display: block; 
+    transform: translateY(100%); 
+    opacity: 0; 
+}
+</style>
+
+<script>
+class TextAnimator {
+    constructor() {
+        this.animatedElements = new Set();
+        this.init();
+    }
+    
+    init() {
+        // Wait for DOM to be ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => this.animateAllText());
+        } else {
+            this.animateAllText();
+        }
+    }
+    
+    animateAllText() {
+        // Target all text elements
+        const textSelectors = [
+            'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+            'p', '.hero-text', '.title', '.heading',
+            '.subtitle', '.description', '.content',
+            '.text', '.copy', '.intro'
+        ];
+        
+        textSelectors.forEach(selector => {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(element => this.animateElement(element));
+        });
+    }
+    
+    animateElement(element) {
+        // Skip if already animated or empty
+        if (this.animatedElements.has(element) || !element.textContent.trim()) {
+            return;
+        }
+        
+        this.animatedElements.add(element);
+        const splitter = new LineSplitter(element);
+        
+        // Create scroll trigger
+        ScrollTrigger.create({
+            trigger: element,
+            start: "top 85%",
+            onEnter: () => {
+                splitter.animate({
+                    duration: 0.8,
+                    stagger: 0.2,
+                    ease: "power2.out"
+                });
+            }
+        });
+    }
+}
+
+class LineSplitter {
+    constructor(element) {
+        this.element = element;
+        this.originalText = element.textContent;
+        this.lines = [];
+        this.split();
+    }
+    
+    split() {
+        this.element.classList.add('line-container');
+        
+        // Smart line splitting
+        const text = this.originalText.trim();
+        const words = text.split(/\s+/);
+        
+        // Determine lines based on text length
+        let linesCount = 1;
+        if (words.length > 15) linesCount = 3;
+        else if (words.length > 8) linesCount = 2;
+        
+        const wordsPerLine = Math.ceil(words.length / linesCount);
+        const lines = [];
+        
+        for (let i = 0; i < words.length; i += wordsPerLine) {
+            lines.push(words.slice(i, i + wordsPerLine).join(' '));
+        }
+        
+        this.element.innerHTML = lines.map(line => 
+            `<span class="animated-line">${line}</span>`
+        ).join('');
+        
+        this.lines = Array.from(this.element.querySelectorAll('.animated-line'));
+    }
+    
+    animate(options = {}) {
+        const config = {
+            duration: 0.8,
+            stagger: 0.2,
+            ease: "power2.out",
+            y: 0,
+            opacity: 1,
+            ...options
+        };
+        
+        return gsap.to(this.lines, config);
+    }
+}
+
+// Initialize the text animator
+new TextAnimator();
+</script>
 </body>
 </html>
 <!--= End of HTML Document =-->
