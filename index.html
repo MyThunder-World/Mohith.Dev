@@ -936,28 +936,32 @@ class TextAnimator {
         });
     }
     
-    animateElement(element) {
-        // Skip if already animated or empty
-        if (this.animatedElements.has(element) || !element.textContent.trim()) {
-            return;
-        }
-        
-        this.animatedElements.add(element);
-        const splitter = new LineSplitter(element);
-        
-        // Create scroll trigger
-        ScrollTrigger.create({
-            trigger: element,
-            start: "top 85%",
-            onEnter: () => {
-                splitter.animate({
-                    duration: 0.8,
-                    stagger: 0.2,
-                    ease: "power2.out"
-                });
-            }
-        });
+animateElement(element) {
+    // Skip if already animated, empty, or has existing CSS animations
+    if (
+        this.animatedElements.has(element) ||
+        !element.textContent.trim() ||
+        element.classList.contains('animate-text') // Add this line
+    ) {
+        return;
     }
+
+    this.animatedElements.add(element);
+    const splitter = new LineSplitter(element);
+
+    // Create scroll trigger
+    ScrollTrigger.create({
+        trigger: element,
+        start: "top 85%",
+        onEnter: () => {
+            splitter.animate({
+                duration: 0.8,
+                stagger: 0.2,
+                ease: "power2.out"
+            });
+        }
+    });
+}
 }
 
 class LineSplitter {
