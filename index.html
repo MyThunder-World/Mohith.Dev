@@ -680,7 +680,7 @@
                 <p class="description animate-text delay-2">
                 Passionate about game development, I specialize in creating engaging Roblox experiences that bring players together in virtual worlds filled with adventure and excitement.
                 </p>
-                <a href="#projects" class="cta-button animate-text delay-3">View My Projects</a>
+                <a href="#projects" class="cta-button animate-text delay-3">View My Games</a>
             </div>
             
         <div class="profile-section">
@@ -918,41 +918,43 @@ class TextAnimator {
     }
     
     animateAllText() {
-        // Target all text elements
-        const textSelectors = [
-            'h1', 
-            'h2', 
-            'h3', 
-            'p', 
-            '.main-title', 
-            '.subtitle', 
-            '.description', 
-            '.section-title', 
-            '.about-text', 
-            '.project-title', 
-            '.project-description',
-            'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
-    'p', '.hero-text', '.title', '.heading',
-    '.subtitle', '.description', '.content',
-    '.text', '.copy', '.intro',
-    '.main-title',        // Add this
-    '.section-title',     // Add this
-    '.project-title',     // Add this
-    '.aspiration-card h3' // Add this
-];
-        
-        textSelectors.forEach(selector => {
-            const elements = document.querySelectorAll(selector);
-            elements.forEach(element => this.animateElement(element));
-        });
-    }
-    
-animateElement(element) {
-        // Skip if already animated or empty
-        if (this.animatedElements.has(element) || !element.textContent.trim()) {
-            return;
+         // Get all elements with text content
+    const allElements = document.querySelectorAll('*');
+    allElements.forEach(element => {
+        // Only animate text nodes, skip containers
+        if (this.isTextElement(element)) {
+            this.animateElement(element);
         }
+    });
+}
+    
+isTextElement(element) {
+    const hasText = element.textContent.trim().length > 0;
+    const hasChildren = element.children.length === 0;
+    const isVisible = getComputedStyle(element).display !== 'none';
+    const isNotScript = !['SCRIPT', 'STYLE', 'NOSCRIPT'].includes(element.tagName);
+    
+    return hasText && hasChildren && isVisible && isNotScript;
+}
 
+animateAllText() {
+    // Get all elements with text content
+    const allElements = document.querySelectorAll('*');
+    allElements.forEach(element => {
+        // Only animate text nodes, skip containers
+        if (this.isTextElement(element)) {
+            this.animateElement(element);
+        }
+    });
+}
+
+isTextElement(element) {
+    const hasText = element.textContent.trim().length > 0;
+    const hasChildren = element.children.length === 0;
+    const isVisible = getComputedStyle(element).display !== 'none';
+    const isNotScript = !['SCRIPT', 'STYLE', 'NOSCRIPT'].includes(element.tagName);
+    
+    return hasText && hasChildren && isVisible && isNotScript;
     this.animatedElements.add(element);
     const splitter = new LineSplitter(element);
 
