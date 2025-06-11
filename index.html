@@ -676,8 +676,8 @@
             <div class="hero-container">
             <div class="hero-content">
                 <h1 class="main-title animate-text">Aspiring Game Developer</h1>
-                <p class="subtitle animate-text delay-1">Creating immersive gaming experiences</p>
-                <p class="description animate-text delay-2">
+                <p class="subtitle ">Creating immersive gaming experiences</p>
+                <p class="description ">
                 Passionate about game development, I specialize in creating engaging Roblox experiences that bring players together in virtual worlds filled with adventure and excitement.
                 </p>
                 <a href="#projects" class="cta-button animate-text delay-3">View My Games</a>
@@ -686,7 +686,7 @@
         <div class="profile-section">
          <div class="decoration decoration-1"></div>
          <div class="decoration decoration-2"></div>
-         <div class="profile-container animate-text delay-1">
+         <div class="profile-container">
         <div class="profile-bg"></div>
         <img 
             src="https://i.ibb.co/fdVt70Gg/Mohith-Raghav13737-Photoroom.png" 
@@ -708,10 +708,10 @@
             <div class="about-grid">
                 <div>
                     <h2 class="section-title animate-text">About Me</h2>
-                    <p class="about-text animate-text delay-1">
+                    <p class="about-text ">
                         I'm Mohith, a dedicated Roblox game developer with a passion for creating immersive gaming experiences. My journey began with simple scripts and has evolved into developing complex game systems and engaging player experiences.
                     </p>
-                    <p class="about-text animate-text delay-2">
+                    <p class="about-text">
                         Currently, I focus on a FPS Shooter game development while also expanding my skills in graphical design and project leadership.
                     </p>
                 </div>
@@ -750,7 +750,7 @@
         <div class="section-content">
             <div class="aspirations-content">
                 <h2 class="section-title animate-text">My Goals</h2>
-                <p class="about-text animate-text delay-1">
+                <p class="about-text">
                     Here are my key aspirations as I continue my journey in game development and project leadership.
                 </p>
                 <div class="aspiration-cards">
@@ -782,7 +782,7 @@
     <!-- Projects Section -->
     <section id="projects">
         <div class="section-content">
-            <h2 class="section-title animate-text">My Projects</h2>
+            <h2 class="section-title">My Projects</h2>
             <div class="projects-grid">
                 <div class="project-card">
                     <h3 class="project-title">Thunder Game V4</h3>
@@ -821,14 +821,14 @@
         <div class="section-content">
             <div class="contact-content">
                 <h2 class="section-title animate-text">Let's Connect</h2>
-                <p class="about-text animate-text delay-1">
+                <p class="about-text">
                     I'm always excited to collaborate with fellow developers, connect with players, or discuss new project opportunities. Let's create amazing games together!
                 </p>
                 <div class="contact-links">
-                    <a href="mailto:MohithRaghav16@gmail.com" class="contact-link animate-text delay-2">
+                    <a href="mailto:MohithRaghav16@gmail.com" class="contact-link ">
                         📧 Email
                     </a>
-                    <a href="https://github.com/MyThunder-World" class="contact-link animate-text delay-2">
+                    <a href="https://github.com/MyThunder-World" class="contact-link ">
                         💻 GitHub
                     </a>
                 </div>
@@ -918,43 +918,34 @@ class TextAnimator {
     }
     
     animateAllText() {
-         // Get all elements with text content
-    const allElements = document.querySelectorAll('*');
-    allElements.forEach(element => {
-        // Only animate text nodes, skip containers
-        if (this.isTextElement(element)) {
-            this.animateElement(element);
-        }
-    });
-}
+        // Target all text elements
+        const textSelectors = [
+    'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+    'p', '.hero-text', '.title', '.heading',
+    '.subtitle', '.description', '.content',
+    '.text', '.copy', '.intro',
+    '.main-title',        // Add this
+    '.section-title',     // Add this
+    '.project-title',     // Add this
+    '.aspiration-card h3' // Add this
+];
+        
+        textSelectors.forEach(selector => {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(element => this.animateElement(element));
+        });
+    }
     
-isTextElement(element) {
-    const hasText = element.textContent.trim().length > 0;
-    const hasChildren = element.children.length === 0;
-    const isVisible = getComputedStyle(element).display !== 'none';
-    const isNotScript = !['SCRIPT', 'STYLE', 'NOSCRIPT'].includes(element.tagName);
-    
-    return hasText && hasChildren && isVisible && isNotScript;
-}
+animateElement(element) {
+    // Skip if already animated, empty, or has existing CSS animations
+    if (this.animatedElements.has(element) || 
+        !element.textContent.trim() ||
+        element.classList.contains('animate-text')) {  // Add this line
+        return;
+    }
+    // ... rest of the method
 
-animateAllText() {
-    // Get all elements with text content
-    const allElements = document.querySelectorAll('*');
-    allElements.forEach(element => {
-        // Only animate text nodes, skip containers
-        if (this.isTextElement(element)) {
-            this.animateElement(element);
-        }
-    });
-}
 
-isTextElement(element) {
-    const hasText = element.textContent.trim().length > 0;
-    const hasChildren = element.children.length === 0;
-    const isVisible = getComputedStyle(element).display !== 'none';
-    const isNotScript = !['SCRIPT', 'STYLE', 'NOSCRIPT'].includes(element.tagName);
-    
-    return hasText && hasChildren && isVisible && isNotScript;
     this.animatedElements.add(element);
     const splitter = new LineSplitter(element);
 
