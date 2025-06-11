@@ -920,11 +920,15 @@ class TextAnimator {
     animateAllText() {
         // Target all text elements
         const textSelectors = [
-            'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
-            'p', '.hero-text', '.title', '.heading',
-            '.subtitle', '.description', '.content',
-            '.text', '.copy', '.intro'
-        ];
+    'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+    'p', '.hero-text', '.title', '.heading',
+    '.subtitle', '.description', '.content',
+    '.text', '.copy', '.intro',
+    '.main-title',        // Add this
+    '.section-title',     // Add this
+    '.project-title',     // Add this
+    '.aspiration-card h3' // Add this
+];
         
         textSelectors.forEach(selector => {
             const elements = document.querySelectorAll(selector);
