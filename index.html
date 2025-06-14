@@ -323,14 +323,14 @@
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 1rem;
             margin-top: 2rem;
-              align-items: stretch; /* Ensures all grid items stretch to the same height */
+            align-items: stretch;
         }
 
         .skill-card {
-            background: linear-gradient(135deg, var(--shadow-color), var(--shadow-color));
+            background: var(--shadow-color);
             border: 1px solid var(--border-color);
             border-radius: 15px;
             padding: 1.5rem;
@@ -342,8 +342,6 @@
             justify-content: center;
             align-items: center;
             box-sizing: border-box;
-            min-width: 0;
-            min-height: 0;
         }
 
         .skill-card:hover {
