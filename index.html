@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox Game Developer Portfolio</title>
+    <title>SKELA Media - Showcase Your Story</title>
     <style>
         * {
             margin: 0;
@@ -11,857 +11,624 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --primary-color: #8b5cf6;
-            --secondary-color: #a855f7;
-            --accent-color: #c084fc;
-            --bg-dark: #0a0a0a;
-            --bg-secondary: #1a1a1a;
-            --bg-accent: #0f0f23;
-            --text-primary: #e0e0e0;
-            --text-secondary: #b0b0b0;
-            --text-muted: #9ca3af;
-            --shadow-color: rgba(139, 92, 246, 0.3);
-            --border-color: rgba(139, 92, 246, 0.3);
-        }
-
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-primary);
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #ffffff;
             min-height: 100vh;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-            transition: all 0.3s ease;
         }
 
-        /* Gold Theme */
-        body.gold-theme {
-            --primary-color: #fbbf24;
-            --secondary-color: #f59e0b;
-            --accent-color: #0e0d0d;
-            --bg-dark: #0c0c0b;
-            --bg-secondary: #080808;
-            --bg-accent: #161615;
-            --text-primary: #ffffff;
-            --text-secondary: #ffffff;
-            --text-muted: #ffffff;
-            --shadow-color: rgba(251, 191, 36, 0.3);
-            --border-color: rgba(251, 191, 36, 0.3);
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-secondary);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 10px;
-        }
-
-        /* Navigation */
-        nav {
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             position: fixed;
+            width: 100%;
             top: 0;
-            left: 0;
-            right: 0;
-            padding: 1rem 3rem;
             z-index: 1000;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
             transition: all 0.3s ease;
-            border-bottom: 1px solid var(--border-color);
         }
 
-        body.gold-theme nav {
-            background: rgba(19, 19, 18, 0.95);
-        }
-
-        .nav-container {
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
             list-style: none;
+            gap: 2rem;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--text-primary);
+            color: #333;
             font-weight: 500;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
+            transition: color 0.3s ease;
             position: relative;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            transition: width 0.3s ease;
+            bottom: -5px;
+            left: 50%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            transition: all 0.3s ease;
         }
 
         .nav-links a:hover::after {
-            width: 80%;
-        }
-
-        .nav-links a:hover {
-            color: var(--secondary-color);
-            transform: translateY(-2px);
-        }
-
-        /* Theme Toggle Button in Navigation */
-        .theme-toggle {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border: none;
-            border-radius: 50px;
-            padding: 0.7rem 1.5rem;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .theme-toggle:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px var(--shadow-color);
-        }
-
-        /* Sections */
-        section {
-            min-height: 100vh;
-            padding: 80px 5% 40px;
-            display: flex;
-            align-items: center;
-            position: relative;
-        }
-
-        .section-content {
-            max-width: 1400px;
-            margin: 0 auto;
             width: 100%;
+            left: 0;
         }
 
-        /* Animated Text */
-        .animate-text {
-            opacity: 1;
-            transform: translateY(0);
-            transition: all 0.8s ease;
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
         }
 
-        .ColorAnimeText {
-            opacity: 1;
-            transform: translateY(0);
-            transition: all 0.8s ease;
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #ff6b6b;
+            border: 2px solid #ff6b6b;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
 
         /* Hero Section */
-        #hero {
-            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-secondary) 50%, var(--bg-accent) 100%);
-        }
-
-        .hero-container {
-            display: flex;
-            align-items: center;
-            gap: 4rem;
-        }
-
-        .hero-content {
-            flex: 1;
-        }
-
-        .main-title {
-            font-size: clamp(2.5rem, 8vw, 6rem);
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 2rem;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--secondary-color) 50%, var(--primary-color) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .subtitle {
-            font-size: clamp(1.2rem, 4vw, 1.5rem);
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            font-weight: 400;
-            line-height: 1.4;
-        }
-
-        .description {
-            font-size: clamp(1rem, 2.5vw, 1.1rem);
-            color: var(--text-muted);
-            line-height: 1.7;
-            max-width: 500px;
-            margin-bottom: 3rem;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        .hero {
+            margin-top: 80px;
+            padding: 4rem 0;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            box-shadow: 0 10px 30px var(--shadow-color);
+            border-radius: 0 0 50px 50px;
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px var(--shadow-color);
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
         }
 
-        .cta-button::after {
-            content: '→';
-            transition: transform 0.3s ease;
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
         }
 
-        .cta-button:hover::after {
-            transform: translateX(5px);
+        .hero-cta {
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
         }
 
-        /* Profile Section */
-        .profile-section {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .profile-container {
-            position: relative;
-            width: 350px;
-            height: 450px;
-        }
-
-        .profile-bg {
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            right: -20px;
-            bottom: -20px;
-            background: linear-gradient(135deg, var(--shadow-color) 0%, var(--shadow-color) 100%);
-            border-radius: 30px;
-            animation: float 6s ease-in-out infinite;
-        }
-
-       
-        .profile-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center center;
+        /* News Section */
+        .news-section {
+            background: rgba(255, 255, 255, 0.95);
+            margin: 2rem 0;
             border-radius: 20px;
-            position: relative;
-            z-index: 2;
-            box-shadow: 0 40px px var(--transparent);
-            transition: transform 0.3s ease;
-            opacity: 1;
-            display: block;
-            transform: scale(1.35); /* Add this */
-        }
-
-        /* About Section */
-        #about {
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-accent) 50%, var(--bg-secondary) 100%);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
+            padding: 3rem 0;
+            backdrop-filter: blur(10px);
         }
 
         .section-title {
-            font-size: clamp(2rem, 6vw, 3rem);
-            font-weight: 800;
-            margin-bottom: 2rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .about-text {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            line-height: 1.8;
-            color: var(--text-secondary);
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-date {
+            color: #ff6b6b;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .news-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .news-card p {
+            color: #666;
             margin-bottom: 1.5rem;
         }
 
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
-            margin-top: 2rem;
-            align-items: stretch;
+        /* Creator Types Section */
+        .creators-section {
+            background: rgba(255, 255, 255, 0.95);
+            margin: 2rem 0;
+            border-radius: 20px;
+            padding: 3rem 0;
+            backdrop-filter: blur(10px);
         }
 
-        .skill-card {
-            background: var(--shadow-color);
-            border: 1px solid var(--border-color);
-            border-radius: 15px;
-            padding: 1.5rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            box-sizing: border-box;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-5px);
-            background: var(--shadow-color);
-            box-shadow: 0 10px 30px var(--shadow-color);
-        }
-
-        .skill-card h3 {
-            color: var(--secondary-color);
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        .skill-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* Aspirations Section */
-        #aspirations {
-            background: linear-gradient(135deg, var(--bg-accent) 0%, var(--bg-secondary) 50%, var(--bg-dark) 100%);
-        }
-
-        .aspirations-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .aspiration-cards {
+        .creator-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
         }
 
-        .aspiration-card {
-            background: linear-gradient(135deg, var(--shadow-color), var(--shadow-color));
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 2rem;
-            transition: all 0.6s ease;
-        }
-
-        .aspiration-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px var(--shadow-color);
-        }
-
-        .aspiration-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        .aspiration-card h3 {
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .aspiration-card p {
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        /* Projects Section */
-        #projects {
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-accent) 100%);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .project-card {
-            background: linear-gradient(135deg, var(--shadow-color), var(--shadow-color));
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 2rem;
-            transition: all 0.6s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px var(--shadow-color);
-        }
-
-        .project-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
-        }
-
-        .project-description {
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .tech-tag {
-            background: var(--shadow-color);
-            color: var(--text-primary);
-            padding: 0.3rem 0.8rem;
+        .creator-card {
+            background: white;
             border-radius: 15px;
-            font-size: 0.9rem;
-        }
-
-        .project-link {
-            color: var(--secondary-color);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .project-link:hover {
-            color: var(--primary-color);
-            text-decoration: underline;
-        }
-
-        /* Contact Section */
-        #contact {
-            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-secondary) 100%);
-        }
-
-        .contact-content {
+            padding: 2rem;
             text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .contact-links {
+        .creator-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .creator-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .creator-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Creator icons with different colors */
+        .creator-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
             display: flex;
+            align-items: center;
             justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
+            font-size: 2rem;
+            color: white;
+            position: relative;
+            z-index: 1;
         }
 
-        .contact-link {
+        .creator-card:nth-child(1) .creator-icon {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+        }
+
+        .creator-card:nth-child(2) .creator-icon {
+            background: linear-gradient(45deg, #4ecdc4, #45b7b8);
+        }
+
+        .creator-card:nth-child(3) .creator-icon {
+            background: linear-gradient(45deg, #a8e6cf, #7fcdcd);
+        }
+
+        .creator-card:nth-child(4) .creator-icon {
+            background: linear-gradient(45deg, #ffd93d, #ffb74d);
+        }
+
+        .creator-card:nth-child(5) .creator-icon {
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
+        }
+
+        .creator-card:nth-child(6) .creator-icon {
+            background: linear-gradient(45deg, #a8edea, #fed6e3);
+        }
+
+        .creator-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .creator-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Featured Creator Section */
+        .featured-creator {
+            background: rgba(255, 255, 255, 0.95);
+            margin: 2rem 0;
+            border-radius: 20px;
+            padding: 3rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .featured-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .featured-info {
+            padding: 2rem;
+        }
+
+        .featured-badge {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .featured-rating {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: var(--secondary-color);
-            text-decoration: none;
+            margin: 1rem 0;
+        }
+
+        .stars {
+            color: #ffd700;
+            font-size: 1.2rem;
+        }
+
+        .project-showcase {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #a8e6cf, #7fcdcd);
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
             font-weight: 600;
-            padding: 1rem 1.5rem;
-            border: 1px solid var(--border-color);
-            border-radius: 50px;
-            transition: all 0.3s ease;
         }
 
-        .contact-link:hover {
-            background: var(--shadow-color);
-            transform: translateY(-3px);
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 3rem;
         }
 
-        /* Decorative Elements */
-        .decoration {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: float 6s ease-in-out infinite;
-            pointer-events: none;
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
 
-        .decoration-1 {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            top: 10%;
-            left: -5%;
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #4ecdc4;
         }
 
-        .decoration-2 {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-            bottom: 20%;
-            right: -3%;
-            animation-delay: -3s;
+        .footer-section p,
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            display: block;
         }
 
-        /* Animations */
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(180deg);
-            }
+        .footer-section a:hover {
+            color: #667eea;
         }
 
-        /* Mobile Responsive */
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
-            nav {
-                padding: 1rem 2rem;
-            }
-
-            .nav-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
             .nav-links {
-                gap: 1rem;
+                display: none;
             }
 
-            .nav-links a {
-                font-size: 0.9rem;
-                padding: 0.3rem 0.8rem;
+            .hero h1 {
+                font-size: 2.5rem;
             }
 
-            .theme-toggle {
-                padding: 0.5rem 1rem;
-                font-size: 0.8rem;
-            }
-
-            .hero-container, .about-grid {
-                flex-direction: column;
-                text-align: center;
-                gap: 2rem;
-            }
-
-            .hero-content {
-                order: 2;
-            }
-
-            .profile-section {
-                order: 1;
-            }
-
-            .profile-container {
-                width: 280px;
-                height: 350px;
-            }
-            .profile-image {
-               transform: scale(0.85);
-            }
-
-            .contact-links {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-
-            .projects-grid, .aspiration-cards {
+            .featured-content {
                 grid-template-columns: 1fr;
             }
 
-            section {
-                padding: 100px 3% 40px;
-            }
-
-            .decoration {
-                display: none;
+            .container {
+                padding: 0 15px;
             }
         }
 
-        @media (max-width: 480px) {
-            .main-title {
-                font-size: 2.2rem;
-            }
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
 
-            .subtitle {
-                font-size: 1.1rem;
-            }
-
-            .profile-container {
-                width: 240px;
-                height: 300px;
-            }
-
-            .aspiration-cards {
-                gap: 1.5rem;
-            }
-
-            .aspiration-card {
-                padding: 1.5rem;
-            }
-
-            .nav-links {
-                gap: 0.5rem;
-            }
-
-            .nav-links a {
-                font-size: 0.8rem;
-                padding: 0.2rem 0.6rem;
-            }
-
-            .nav-container {
-                align-items: center;
-            }
-
-            .theme-toggle {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.7rem;
-            }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-container">
+    <header>
+        <nav class="container">
+            <div class="logo">SKELA</div>
             <ul class="nav-links">
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#aspirations">Goals</a></li>
-                <li><a href="#projects">Projects</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#creators">Creators</a></li>
+                <li><a href="#showcase">Showcase</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <button class="theme-toggle" onclick="toggleTheme()">
-                <span>🌟</span>
-                <span>Gold Theme</span>
-            </button>
-        </div>
-    </nav>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline">Sign In</a>
+                <a href="#" class="btn btn-primary">Get Started</a>
+            </div>
+        </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section id="hero">
-        <div class="section-content">
-            <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="main-title animate-text">Aspiring Game Developer</h1>
-                <p class="subtitle ColorAnimeText delay-1 ">Creating immersive gaming experiences</p>
-                <p class="description ColorAnimeText delay-2">
-                    Hello! I'm Mohith, a passionate Roblox game developer with a focus on creating engaging and innovative gaming experiences. My journey in game development has been fueled by creativity and a love for interactive storytelling.
-                I specialize in creating engaging Roblox experiences that bring players together in virtual worlds filled with adventure and excitement.
-                </p>
-                <a href="#projects" class="cta-button animate-text delay-3">View My Projects</a>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Showcase Your Story. Create Your Moment.</h1>
+                <p>Be the first to meet the world of creators!</p>
+                <div class="hero-cta">
+                    <a href="#" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">Launch in 60 Seconds</a>
+                </div>
             </div>
-            
-        <div class="profile-section">
-         <div class="decoration decoration-1"></div>
-         <div class="decoration decoration-2"></div>
-         <div class="profile-container">
-        <div class="profile-bg"></div>
-        <img 
-            src="https://i.ibb.co/fdVt70Gg/Mohith-Raghav13737-Photoroom.png" 
-            alt="Profile Image"
-            class="profile-image"
-            width="1200"
-            height="1200"
-            style="background: transparent;"
-        />
-    </div>
-</div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="section-content">
-            <div class="about-grid">
-                <div>
-                    <h2 class="section-title animate-text">About Me</h2>
-                    <p class="about-text ">
-                        I'm Mohith, a dedicated Roblox game developer with a passion for creating immersive gaming experiences. My journey began with simple scripts and has evolved into developing complex game systems and engaging player experiences.
-                    </p>
-                    <p class="about-text ColorAnimeText delay-1">
-                        Currently, I focus on developing a FPS Shooter game development while also expanding my skills in graphical design and project leadership.
-                    </p>
-                </div>
-                <div class="skills-grid ColorAnimeText delay-1">
-                    <div class="skill-card ">
-                        <h3>Roblox Studio</h3>
-                        <p>Advanced game development & scripting</p>
+        <div class="container">
+            <section class="news-section fade-in">
+                <h2 class="section-title">Latest News</h2>
+                <div class="news-grid">
+                    <div class="news-card">
+                        <div class="news-date">AUGUST 1, 2025</div>
+                        <h3>Faster Than Parachutes Tease New Album Cover</h3>
+                        <p>Share snippets of press reviews and media mentions on your page to highlight your brand's credibility. Influencer and online reviews work, too!</p>
+                        <a href="#" class="btn btn-primary">Read More</a>
                     </div>
-                    <div class="skill-card">
-                        <h3>Game Design</h3>
-                        <p>Level design & player experience</p>
+                    <div class="news-card">
+                        <div class="news-date">DECEMBER 6, 2024</div>
+                        <h3>Faster Than Parachutes Wins Best New Album</h3>
+                        <p>Share snippets of press reviews and media mentions on your page to highlight your brand's credibility. Influencer and online reviews work, too!</p>
+                        <a href="#" class="btn btn-primary">Read More</a>
                     </div>
-                    <div class="skill-card">
-                        <h3>Project Lead</h3>
-                        <p>Team management & production</p>
-                    </div>
-                    <div class="skill-card">
-                        <h3>Graphics Design</h3>
-                        <p>UI/UX, visual assets and effects</p>
-                    </div>
-                    <div class="skill-card">
-                        <h3>Animation</h3>
-                        <p>Rigging and animating characters and weapons</p>
-                    </div>
-                    <div class="skill-card">
-                        <h3>AI Tools</h3>
-                        <p>Creating code, UI and design using AI Tools</p>
+                    <div class="news-card">
+                        <div class="news-date">JUNE 15, 2024</div>
+                        <h3>Freedom Tour Kicks Off in August</h3>
+                        <p>Share snippets of press reviews and media mentions on your page to highlight your brand's credibility. Influencer and online reviews work, too!</p>
+                        <a href="#" class="btn btn-primary">Read More</a>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- Aspirations Section -->
-    <section id="aspirations">
-        <div class="section-content">
-            <div class="aspirations-content">
-                <h2 class="section-title animate-text">My Goals</h2>
-                <p class="about-text ColorAnimeText delay-1">
-                    Here are my key aspirations as I continue my journey in game development and project leadership.
-                </p>
-                <div class="aspiration-cards">
-                    <div class="aspiration-card ColorAnimeText delay-1">
-                        <div class="aspiration-icon">🎮</div>
-                        <h3>Game Innovation</h3>
-                        <p>Create groundbreaking Roblox games that push the boundaries of what's possible on the platform, focusing on unique gameplay mechanics and immersive experiences.</p>
+            <section class="creators-section fade-in">
+                <h2 class="section-title">Creator Types</h2>
+                <div class="creator-grid">
+                    <div class="creator-card">
+                        <div class="creator-icon">🎬</div>
+                        <h3>Film Creators</h3>
+                        <p>Create or improve your videos with video editing and post-production services. Visual storytelling at its finest.</p>
+                        <a href="#" class="btn btn-outline">Learn More</a>
                     </div>
-                    <div class="aspiration-card">
-                        <div class="aspiration-icon ColorAnimeText delay-1">🚀</div>
-                        <h3>Studio Leadership</h3>
-                        <p>Lead a successful game development studio, managing teams of developers and designers to create high-quality gaming experiences that reach millions of players.</p>
+                    <div class="creator-card">
+                        <div class="creator-icon">🎵</div>
+                        <h3>Music Artists</h3>
+                        <p>Showcase your musical talent and connect with audiences worldwide. From composition to performance.</p>
+                        <a href="#" class="btn btn-outline">Learn More</a>
                     </div>
-                    <div class="aspiration-card">
-                        <div class="aspiration-icon ColorAnimeText delay-1">🎓</div>
-                        <h3>Skill Mastery</h3>
-                        <p>Continuously improve my technical skills in game development, staying updated with the latest Roblox features and industry best practices.</p>
+                    <div class="creator-card">
+                        <div class="creator-icon">✂️</div>
+                        <h3>Movie Editors</h3>
+                        <p>Professional video editing and post-production services. VFX and animation expertise included.</p>
+                        <a href="#" class="btn btn-outline">Learn More</a>
                     </div>
-                    <div class="aspiration-card">
-                        <div class="aspiration-icon ColorAnimeText delay-1">🌟</div>
-                        <h3>Community Impact</h3>
-                        <p>Build games that bring joy and excitement to players worldwide, creating memorable experiences that foster community and friendship.</p>
+                    <div class="creator-card">
+                        <div class="creator-icon">📷</div>
+                        <h3>Cinematographers</h3>
+                        <p>Visual storytelling through the lens. Create stunning cinematography that captures your vision.</p>
+                        <a href="#" class="btn btn-outline">Learn More</a>
+                    </div>
+                    <div class="creator-card">
+                        <div class="creator-icon">🎧</div>
+                        <h3>Sound Engineers</h3>
+                        <p>Professional audio production and sound engineering services for all your creative projects.</p>
+                        <a href="#" class="btn btn-outline">Learn More</a>
+                    </div>
+                    <div class="creator-card">
+                        <div class="creator-icon">✨</div>
+                        <h3>VFX Artists</h3>
+                        <p>Bring your imagination to life with cutting-edge visual effects and animation services.</p>
+                        <a href="#" class="btn btn-outline">Learn More</a>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- Projects Section -->
-    <section id="projects">
-        <div class="section-content">
-            <h2 class="section-title animate-text">My Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3 class="project-title ColorAnimeText delay-1">Thunder Game V4</h3>
-                    <p class="project-description ColorAnimeText delay-2">
-                        An intense FPS shooting game featuring PVE gameplay mechanics. Players engage in tactical combat across the map with diverse weapon systems, and dynamic AI enemies that create an ever-changing battlefield experience. This game is being worked on but you can still play the test version.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Roblox Studio</span>
-                        <span class="tech-tag">Lua Scripting</span>
-                        <span class="tech-tag">Game Design</span>
-                        <span class="tech-tag">3D Modeling</span>
+            <section class="featured-creator fade-in">
+                <h2 class="section-title">Featured Creator</h2>
+                <div class="featured-content">
+                    <div class="featured-info">
+                        <div class="featured-badge">Skela's Choice</div>
+                        <h3>KANNAN</h3>
+                        <p><strong>TAMIL NADU • LEVEL-2</strong></p>
+                        <div class="featured-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span>4.9 (2,000 reviews)</span>
+                        </div>
+                        <p>Professional video editor with 6 years of experience creating compelling videos for brands like Unilever, Netcore, Haier, and smrtPhone.</p>
+                        <h4>What working with me is like:</h4>
+                        <ul style="margin: 1rem 0; padding-left: 2rem; color: #666;">
+                            <li>Fast turnaround time</li>
+                            <li>Client-Centric Approach</li>
+                            <li>Collaborative Process</li>
+                            <li>Clear Communication</li>
+                        </ul>
+                        <div style="margin-top: 2rem;">
+                            <a href="#" class="btn btn-primary">Invite to Project</a>
+                            <a href="#" class="btn btn-outline">View Portfolio</a>
+                        </div>
                     </div>
-                    <a href="https://www.roblox.com/games/140184939444893/Untitled-Game3" class="project-link">Play Game →</a>
-                </div>
-                
-                <div class="project-card">
-                    <h3 class="project-title ColorAnimeText delay-1">This Portfolio Website</h3>
-                    <p class="project-description ColorAnimeText delay-2">
-                        This very website you're viewing was created using AI assistance and modern web technologies. It showcases responsive design, smooth animations, and interactive elements while being hosted on GitHub Pages for easy access and updates.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">AI Assisted</span>
-                        <span class="tech-tag">GitHub</span>
+                    <div class="project-showcase">
+                        <div class="project-image">HAVOC - $30 Million Project</div>
+                        <h4>Featured Project: HAVOC</h4>
+                        <p><strong>Duration:</strong> 1 Year • <strong>Budget:</strong> $30 Million</p>
+                        <p>After a drug deal gone wrong, a bruised detective must fight his way through the criminal underworld to rescue a politician's estranged son, unravelling a deep web of corruption and conspiracy that ensnares his entire city.</p>
+                        <p><strong>5+ More projects in portfolio</strong></p>
                     </div>
-                    <a href="https://github.com/MyThunder-World/Mohith.Dev" class="project-link">View Source →</a>
                 </div>
-            </div>
+            </section>
         </div>
-    </section>
+    </main>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="section-content">
-            <div class="contact-content">
-                <h2 class="section-title animate-text">Let's Connect</h2>
-                <p class="about-text ColorAnimeText delay-1">
-                    I'm always excited to collaborate with fellow developers, connect with players, or discuss new project opportunities. Let's create amazing games together!
-                </p>
-                <div class="contact-links">
-                    <a href="mailto:MohithRaghav16@gmail.com" class="contact-link ">
-                        📧 Email
-                    </a>
-                    <a href="https://github.com/MyThunder-World" class="contact-link ">
-                        💻 GitHub
-                    </a>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><strong>Management:</strong><br>KNJ Label<br>hello@skela-media.com</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="#">Film Creation</a>
+                    <a href="#">Music Production</a>
+                    <a href="#">Video Editing</a>
+                    <a href="#">Cinematography</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <a href="#">About Us</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Press</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <a href="#">Help Center</a>
+                    <a href="#">Community</a>
+                    <a href="#">Guidelines</a>
+                    <a href="#">Safety</a>
                 </div>
             </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SKELA Media. All rights reserved. Showcase your story, create your moment.</p>
+            </div>
         </div>
-    </section>
+    </footer>
 
     <script>
-        // Theme Toggle Function
-        function toggleTheme() {
-            document.body.classList.toggle('gold-theme');
-            const button = document.querySelector('.theme-toggle');
-            const icon = button.querySelector('span:first-child');
-            const text = button.querySelector('span:last-child');
-            
-            if (document.body.classList.contains('gold-theme')) {
-                icon.textContent = '💜';
-                text.textContent = 'Purple Theme';
-            } else {
-                icon.textContent = '🌟';
-                text.textContent = 'Gold Theme';
-            }
-        }
-
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -876,238 +643,88 @@
             });
         });
 
-        // Enhanced scroll effects
+        // Scroll animation for fade-in elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
         window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelector('.profile-bg');
-            if (parallax) {
-                parallax.style.transform = `translateY(${scrolled * 0.2}px)`;
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 4px 25px rgba(0, 0, 0, 0.15)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
             }
         });
 
-        // Initialize page animations
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add staggered animation delays
-            const animatedElements = document.querySelectorAll('.animate-text');
-            animatedElements.forEach((element, index) => {   
-                    element.style.transitionDelay = `${index * 0.1}s`;
-                });
-            // Trigger initial animations
-            animatedElements.forEach(element => {
-                element.classList.add('animate');
-            });
-        });
-    </script>   
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-<style>
-.line-container { overflow: hidden; }
-.animated-line { 
-    display: block; 
-    transform: translateY(100%); 
-    opacity: 0; 
-}
-</style>
-
-<script>
-class TextAnimator {
-    constructor() {
-        this.animatedElements = new Set();
-        this.init();
-    }
-    
-    init() {
-        // Wait for DOM to be ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => this.animateAllText());
-        } else {
-            this.animateAllText();
-        }
-    }
-    
-    animateAllText() {
-        // Target all text elements
-        const textSelectors = [
-    'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
-    'p', '.hero-text', '.title', '.heading',
-    '.subtitle', '.description', '.content',
-    '.text', '.copy', '.intro',
-    '.main-title',        // Add this
-    '.section-title',     // Add this
-    '.project-title',     // Add this
-    '.aspiration-card h3' // Add this
-];
-        
-        textSelectors.forEach(selector => {
-            const elements = document.querySelectorAll(selector);
-            elements.forEach(element => this.animateElement(element));
-        });
-    }
-    
-animateElement(element) {
-    // Skip if already animated, empty, or has existing CSS animations
-    if (this.animatedElements.has(element) || 
-        !element.textContent.trim() ||
-        element.classList.contains('animate-text')) {  // Add this line
-        return;
-    }
-    // ... rest of the method
-
-
-    this.animatedElements.add(element);
-    const splitter = new LineSplitter(element);
-
-    // Create scroll trigger
-    ScrollTrigger.create({
-        trigger: element,
-        start: "top 85%",
-        onEnter: () => {
-            splitter.animate({
-                duration: 0.8,
-                stagger: 0.2,
-                ease: "power2.out"
-            });
-        }
-    });
-}
-}
-
-class LineSplitter {
-    constructor(element) {
-        this.element = element;
-        this.originalText = element.textContent;
-        this.lines = [];
-        this.split();
-    }
-    
-    split() {
-        this.element.classList.add('line-container');
-        
-        // Smart line splitting
-        const text = this.originalText.trim();
-        const words = text.split(/\s+/);
-        
-        // Determine lines based on text length
-        let linesCount = 1;
-        if (words.length > 15) linesCount = 3;
-        else if (words.length > 8) linesCount = 2;
-        
-        const wordsPerLine = Math.ceil(words.length / linesCount);
-        const lines = [];
-        
-        for (let i = 0; i < words.length; i += wordsPerLine) {
-            lines.push(words.slice(i, i + wordsPerLine).join(' '));
-        }
-        
-        this.element.innerHTML = lines.map(line => 
-            `<span class="animated-line">${line}</span>`
-        ).join('');
-        
-        this.lines = Array.from(this.element.querySelectorAll('.animated-line'));
-    }
-    
-    animate(options = {}) {
-        const config = {
-            duration: 0.8,
-            stagger: 0.2,
-            ease: "power2.out",
-            y: 0,
-            opacity: 1,
-            ...options
-        };
-        
-        return gsap.to(this.lines, config);
-    }
-}
-
-// Initialize the text animator
-new TextAnimator();
-// Enhanced TextAnimator with reverse scroll animation
-class ReverseScrollAnimator {
-    constructor() {
-        this.animatedElements = new Map();
-        this.init();
-    }
-    
-    init() {
-        // Wait for existing TextAnimator to finish
-        setTimeout(() => {
-            this.setupReverseAnimations();
-        }, 100);
-    }
-    
-    setupReverseAnimations() {
-        // Find all animated line containers
-        const lineContainers = document.querySelectorAll('.line-container');
-        
-        lineContainers.forEach(container => {
-            const lines = container.querySelectorAll('.animated-line');
-            if (lines.length === 0) return;
-            
-            // Store original state
-            this.animatedElements.set(container, {
-                lines: Array.from(lines),
-                isAnimated: false
+        // Interactive hover effects for cards
+        document.querySelectorAll('.news-card, .creator-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
             });
             
-            // Create ScrollTrigger for reverse animation
-            ScrollTrigger.create({
-                trigger: container,
-                start: "top 85%",
-                end: "bottom 15%",
-                onEnter: () => {
-                    this.animateIn(container);
-                },
-                onLeave: () => {
-                    this.animateOut(container);
-                },
-                onEnterBack: () => {
-                    this.animateIn(container);
-                },
-                onLeaveBack: () => {
-                    this.animateOut(container);
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Button click animations
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255, 255, 255, 0.3);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s ease-out;
+                    pointer-events: none;
+                `;
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
                 }
-            });
-        });
-    }
-    
-    animateIn(container) {
-        const data = this.animatedElements.get(container);
-        if (!data || data.isAnimated) return;
-        
-        data.isAnimated = true;
-        
-        gsap.to(data.lines, {
-            duration: 0.8,
-            stagger: 0.2,
-            y: 0,
-            opacity: 1,
-            ease: "power2.out"
-        });
-    }
-    
-    animateOut(container) {
-        const data = this.animatedElements.get(container);
-        if (!data || !data.isAnimated) return;
-        
-        data.isAnimated = false;
-        
-        gsap.to(data.lines, {
-            duration: 0.6,
-            stagger: 0.1,
-            y: 50,
-            opacity: 0,
-            ease: "power2.in"
-        });
-    }
-}
-
-// Initialize reverse scroll animator
-setTimeout(() => {
-    new ReverseScrollAnimator();
-}, 500);
-</script>
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
-<!--= End of HTML Document =-->
